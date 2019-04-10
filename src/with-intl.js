@@ -6,30 +6,12 @@ import { IntlContextProvider } from "./intl-context"
 
 const preferDefault = m => (m && m.default) || m
 
-const getLocaleData = locale => {
-  try {
-    const localeData = require(`react-intl/locale-data/${locale}`)
-
-    return localeData
-  } catch (e) {
-    return false
-  }
-}
-
 const addLocaleDataForGatsby = language => {
-  let localeData = null
-  localeData = getLocaleData(language)
-
-  if (!localeData && language.length > 2) {
-    const locale = language.substring(0, 2)
-    localeData = getLocaleData(locale)
+  try {
+    addLocaleData(require(`react-intl/locale-data/${locale}`))
+  } catch(e) {
+    addLocaleData({ locale: language, pluralRuleFunction: () => {} })
   }
-
-  if (!localeData) {
-    throw new Error(`Cannot find react-intl/locale-data/${language}`)
-  }
-
-  addLocaleData(...localeData)
 }
 
 export default WrappedComponent => {
