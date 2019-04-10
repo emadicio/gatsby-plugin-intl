@@ -10,7 +10,7 @@ const addLocaleDataForGatsby = language => {
   try {
     addLocaleData(require(`react-intl/locale-data/${locale}`))
   } catch(e) {
-    addLocaleData({ locale: language, pluralRuleFunction: () => {} })
+    addLocaleData([{ locale: language, pluralRuleFunction: () => {} }])
   }
 }
 
