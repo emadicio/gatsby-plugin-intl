@@ -17,7 +17,7 @@ const addLocaleDataForGatsby = language => {
 export default WrappedComponent => {
   return props => {
     const { intl } = props.pageContext
-    const { language, languages, messages, redirect, routed } = intl
+    const { language, languages, redirect, routed } = intl
 
     /* eslint-disable no-undef */
     const isRedirect = redirect && !routed
@@ -53,7 +53,7 @@ export default WrappedComponent => {
 
     addLocaleDataForGatsby(language)
     return (
-      <IntlProvider locale={language} messages={messages}>
+      <IntlProvider locale={language} messages={intl.messages}>
         <IntlContextProvider value={intl}>
           {isRedirect
             ? GATSBY_INTL_REDIRECT_COMPONENT_PATH &&
