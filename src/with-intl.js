@@ -41,6 +41,13 @@ export default WrappedComponent => {
     }
 
     if (typeof window !== "undefined") {
+      /* 
+      * You can use this to update locales client-side
+      */
+      if (window.___updatedLocales){
+        intl.messages = window.___updatedLocales[language]
+      }
+
       window.___gatsbyIntl = intl
     }
 
