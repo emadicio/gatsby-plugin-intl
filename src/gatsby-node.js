@@ -13,10 +13,11 @@ exports.onCreatePage = async ({ page, actions }, pluginOptions) => {
   const { createPage, deletePage } = actions
   const {
     path = ".",
-    languages = ["en"],
-    defaultLanguage = "en",
+    defaultLanguage = 'we',
     redirect = false,
   } = pluginOptions
+
+  const languages = require(`${path}/languages.json`);
 
   const generatePage = (routed, language) => {
     return {
